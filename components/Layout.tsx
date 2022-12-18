@@ -16,6 +16,7 @@ export function PageLayout({ children }: LayoutProps) {
           type="image/png"
           href="https://www.clipartmax.com/png/full/219-2190038_bags-woman-shopping-icon-transparent.png"
         />
+        <title>Shopify</title>
       </Head>
       <div className="bg-white">
         <Navbar />

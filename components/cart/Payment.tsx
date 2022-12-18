@@ -8,12 +8,12 @@ import { setProducts } from "../../store/productSlice";
 export function Payment() {
   const [open, setOpen] = useState(true);
   const dispatch = useDispatch();
-  const route = useRouter();
+  const nav = useRouter();
 
   const resetApp = () => {
     setOpen(false)
     dispatch(setProducts([]))
-    route.push('/')
+    nav.push('/')
   }
 
   return (

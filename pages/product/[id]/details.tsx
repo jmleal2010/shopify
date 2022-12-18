@@ -3,7 +3,7 @@ import React from "react";
 import { getProducts } from "../../../axios/productsApi";
 import { ProductOverview } from "../../../components/products";
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const { results, count, next, previous } = await getProducts({
     page: 1,
     page_size: 100,

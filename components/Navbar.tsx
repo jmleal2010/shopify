@@ -37,10 +37,11 @@ export function Navbar() {
     categories: [
       {
         id: "departments",
-        name: "Departamentos",
+        name: "Productos",
+        href: "/products",
       },
-      { id: "sections", name: "Secciones" },
-      { id: "stores", name: "Tiendas" },
+      { id: "sections", name: "Secciones", href: "#" },
+      { id: "stores", name: "Tiendas", href: "#" },
     ],
     pages: [
       { name: "Company", href: "#" },
@@ -49,7 +50,7 @@ export function Navbar() {
   };
 
   return (
-    <div onClick={() => nav.push("/cart")}>
+    <div>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
           <Transition.Child
@@ -120,7 +121,7 @@ export function Navbar() {
 
             {/* Logo */}
             <div className="ml-4 flex lg:ml-0">
-              <Link href="/">
+              <Link href={"/"}>
                 <span className="sr-only">Your Company</span>
                 <Image
                   width={80}
@@ -136,11 +137,16 @@ export function Navbar() {
             <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
               <div className="flex h-full space-x-8">
                 {navigation.categories.map((category) => (
+
+                  
                   <Popover key={category.name} className="flex">
                     {({ open }) => (
                       <>
                         <div className="relative flex">
                           <Popover.Button
+                            onClick={() => {
+                              nav.push(category.href);
+                            }}
                             className={classNames(
                               open
                                 ? "border-indigo-600 text-indigo-600"
@@ -187,15 +193,17 @@ export function Navbar() {
 
               {/* Cart */}
               <div className="ml-4 flow-root lg:ml-6">
-                <a href="#" className="group -m-2 flex items-center p-2">
+                <Link href="/cart" className="group -m-2 flex items-center p-2">
                   <ShoppingBagIcon
                     className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                     aria-hidden="true"
                   />
-                  <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                    {items.length}
-                  </span>
-                </a>
+                  {items.length > 0 && (
+                    <span className="inline-flex relative -top-2 -left-3 items-center rounded-full bg-blue-500 px-2.5 py-0.5 text-xs font-medium text-white">
+                      {items.length}
+                    </span>
+                  )}
+                </Link>
               </div>
             </div>
           </div>
